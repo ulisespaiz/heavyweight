@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heavyweight Linemen | Elite Offensive Line Training | Salinas, CA</title>
+<meta name="description" content="Elite offensive line training academy in Salinas, California. Master technique, build real strength, dominate the line.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --brown: #4A2C2A;
+  --brown-deep: #2E1A19;
+  --brown-light: #6B4340;
+  --orange: #D97D3A;
+  --orange-light: #E89B5E;
+  --orange-dark: #B8612A;
+  --cream: #F5E6D3;
+  --cream-dark: #E8D5BF;
+  --cream-light: #FBF3EA;
+  --black: #1A0F0E;
+  --white: #FFFAF5;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Source Serif 4', Georgia, serif;
+  background: var(--black);
+  color: var(--cream);
+  overflow-x: hidden;
+}
+
+/* Loading Screen */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.loader-barbell {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.loader-bar {
+  width: 120px;
+  height: 8px;
+  background: var(--cream-dark);
+  border-radius: 4px;
+}
+
+.loader-plate {
+  width: 0;
+  height: 50px;
+  background: var(--orange);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.loader-plate.loaded { width: 20px; }
+
+.loader-plate-lg {
+  width: 0;
+  height: 70px;
+  background: var(--orange-dark);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.loader-plate-lg.loaded { width: 25px; }
+
+.loader-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: var(--cream-dark);
+  opacity: 0;
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background 0.4s, padding 0.4s, backdrop-filter 0.4s;
+}
+
+nav.scrolled {
+  background: rgba(26, 15, 14, 0.92);
+  backdrop-filter: blur(20px);
+  padding: 14px 40px;
+  border-bottom: 1px solid rgba(217, 125, 58, 0.15);
+}
+
+.nav-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--cream);
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo svg {
+  width: 32px;
+  height: 32px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--cream-dark);
+  text-decoration: none;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.3s;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--orange);
+  transition: width 0.3s;
+}
+
+.nav-links a:hover { color: var(--orange); }
+.nav-links a:hover::after { width: 100%; }
+
+.nav-hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.nav-hamburger span {
+  width: 28px;
+  height: 2px;
+  background: var(--cream);
+  transition: all 0.3s;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 15, 14, 0.98);
+  z-index: 999;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.mobile-menu.active { display: flex; }
+
+.mobile-menu a {
+  color: var(--cream);
+  text-decoration: none;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.5rem;
+  letter-spacing: 0.1em;
+  transition: color 0.3s;
+}
+
+.mobile-menu a:hover { color: var(--orange); }
+
+/* Hero */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at 50% 80%, rgba(74, 44, 42, 0.4) 0%, var(--black) 70%);
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 125, 58, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 125, 58, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  background: var(--orange);
+  border-radius: 50%;
+  opacity: 0;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  padding: 0 20px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(217, 125, 58, 0.3);
+  padding: 8px 24px;
+  border-radius: 100px;
+  margin-bottom: 40px;
+  opacity: 0;
+}
+
+.hero-badge-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--orange);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(1.5); }
+}
+
+.hero-badge span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+}
+
+.hero h1 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(4rem, 12vw, 11rem);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  color: var(--cream);
+  margin-bottom: 10px;
+  overflow: hidden;
+}
+
+.hero h1 .line {
+  display: block;
+  overflow: hidden;
+}
+
+.hero h1 .line-inner {
+  display: block;
+  transform: translateY(110%);
+}
+
+.hero h1 .highlight {
+  color: var(--orange);
+  position: relative;
+}
+
+.hero-sub {
+  font-family: 'Oswald', sans-serif;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+  margin-bottom: 50px;
+  opacity: 0;
+  font-weight: 400;
+}
+
+.hero-cta {
+  opacity: 0;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--orange);
+  color: var(--black);
+  padding: 18px 40px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 40px rgba(217, 125, 58, 0.3);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transform: translateX(-100%);
+  transition: transform 0.5s;
+}
+
+.btn-primary:hover::before { transform: translateX(100%); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  color: var(--cream);
+  padding: 18px 40px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  border: 1px solid rgba(245, 230, 211, 0.25);
+  transition: border-color 0.3s, color 0.3s, background 0.3s;
+}
+
+.btn-secondary:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+  background: rgba(217, 125, 58, 0.05);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+}
+
+.hero-scroll span {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--orange), transparent);
+  animation: scrollPulse 2s infinite;
+}
+
+@keyframes scrollPulse {
+  0% { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* Barbell Divider */
+.barbell-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+  gap: 0;
+  opacity: 0.5;
+}
+
+.barbell-divider .plate {
+  width: 14px;
+  height: 40px;
+  background: var(--orange-dark);
+  border-radius: 3px;
+}
+
+.barbell-divider .plate-lg {
+  width: 18px;
+  height: 56px;
+  background: var(--orange);
+  border-radius: 3px;
+}
+
+.barbell-divider .bar {
+  width: 120px;
+  height: 6px;
+  background: var(--cream-dark);
+  border-radius: 3px;
+}
+
+.barbell-divider .collar {
+  width: 10px;
+  height: 20px;
+  background: var(--cream-dark);
+  border-radius: 2px;
+}
+
+/* Section Styling */
+section {
+  padding: 120px 40px;
+  position: relative;
+}
+
+.section-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-label::before {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--orange);
+}
+
+.section-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  color: var(--cream);
+  margin-bottom: 30px;
+}
+
+.section-subtitle {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--cream-dark);
+  max-width: 600px;
+  opacity: 0.8;
+}
+
+/* Philosophy */
+.philosophy {
+  background: var(--black);
+  overflow: hidden;
+}
+
+.philosophy-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+.philosophy-left {
+  position: sticky;
+  top: 140px;
+}
+
+.pillars {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.pillar {
+  background: rgba(74, 44, 42, 0.15);
+  border: 1px solid rgba(217, 125, 58, 0.1);
+  padding: 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0, 1);
+}
+
+.pillar::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--orange);
+  transform: scaleY(0);
+  transition: transform 0.5s;
+}
+
+.pillar:hover::before,
+.pillar.active::before {
+  transform: scaleY(1);
+}
+
+.pillar:hover,
+.pillar.active {
+  background: rgba(74, 44, 42, 0.3);
+  border-color: rgba(217, 125, 58, 0.25);
+}
+
+.pillar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.pillar-icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(217, 125, 58, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-right: 16px;
+}
+
+.pillar-icon svg {
+  width: 22px;
+  height: 22px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 1.5;
+}
+
+.pillar-title {
+  font-family: 'Oswald', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cream);
+  flex: 1;
+}
+
+.pillar-toggle {
+  font-size: 1.5rem;
+  color: var(--orange);
+  transition: transform 0.3s;
+  font-family: 'Oswald', sans-serif;
+}
+
+.pillar.active .pillar-toggle {
+  transform: rotate(45deg);
+}
+
+.pillar-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0, 1), padding 0.5s;
+}
+
+.pillar.active .pillar-body {
+  max-height: 300px;
+  padding-top: 20px;
+}
+
+.pillar-body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--cream-dark);
+  opacity: 0.8;
+}
+
+/* Programs */
+.programs {
+  background: linear-gradient(180deg, var(--black) 0%, rgba(46, 26, 25, 0.3) 50%, var(--black) 100%);
+}
+
+.programs-header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 80px;
+}
+
+.programs-header .section-label { justify-content: center; }
+.programs-header .section-label::before { display: none; }
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.program-card {
+  background: rgba(74, 44, 42, 0.12);
+  border: 1px solid rgba(217, 125, 58, 0.1);
+  padding: 40px 30px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.25, 0.1, 0, 1);
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.program-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(217, 125, 58, 0.08) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.program-card:hover::before { opacity: 1; }
+
+.program-card:hover {
+  border-color: rgba(217, 125, 58, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.program-level {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 16px;
+  display: inline-block;
+  padding: 4px 12px;
+  border: 1px solid rgba(217, 125, 58, 0.25);
+}
+
+.program-card h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.8rem;
+  color: var(--cream);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.program-ages {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  color: var(--orange-light);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+
+.program-card p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--cream-dark);
+  opacity: 0.8;
+  margin-bottom: 24px;
+}
+
+.program-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 30px;
+}
+
+.program-features li {
+  font-size: 0.85rem;
+  color: var(--cream-dark);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Oswald', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.program-features li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--orange);
+  flex-shrink: 0;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.program-cta {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--orange);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: gap 0.3s;
+}
+
+.program-cta:hover { gap: 14px; }
+
+.program-cta svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--orange);
+  fill: none;
+  stroke-width: 2;
+}
+
+/* Coaching */
+.coaching {
+  background: var(--black);
+  overflow: hidden;
+}
+
+.coaching-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.coaches-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.coach-card {
+  background: rgba(74, 44, 42, 0.12);
+  border: 1px solid rgba(217, 125, 58, 0.1);
+  padding: 50px 40px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.5s;
+}
+
+.coach-card:hover {
+  border-color: rgba(217, 125, 58, 0.25);
+}
+
+.coach-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), var(--orange-dark));
+}
+
+.coach-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.coach-name {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  color: var(--cream);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+.coach-title-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--orange-light);
+  letter-spacing: 0.08em;
+  margin-bottom: 24px;
+}
+
+.coach-bio {
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: var(--cream-dark);
+  opacity: 0.85;
+  margin-bottom: 28px;
+}
+
+.coach-stats {
+  display: flex;
+  gap: 30px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(217, 125, 58, 0.1);
+  flex-wrap: wrap;
+}
+
+.coach-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.coach-stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--orange);
+}
+
+.coach-stat-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+  opacity: 0.6;
+}
+
+.coach-quote {
+  margin-top: 28px;
+  padding: 20px 24px;
+  border-left: 2px solid var(--orange);
+  background: rgba(217, 125, 58, 0.04);
+}
+
+.coach-quote p {
+  font-family: 'Source Serif 4', serif;
+  font-style: italic;
+  font-size: 1rem;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+/* Skills Section */
+.skills {
+  background: linear-gradient(180deg, var(--black) 0%, rgba(46, 26, 25, 0.25) 50%, var(--black) 100%);
+}
+
+.skills-wrapper {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.skills-header {
+  margin-bottom: 60px;
+}
+
+.skills-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.skill-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 24px 28px;
+  background: rgba(74, 44, 42, 0.1);
+  border: 1px solid rgba(217, 125, 58, 0.08);
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: rgba(217, 125, 58, 0.08);
+  transition: width 0.5s;
+}
+
+.skill-item:hover::before { width: 100%; }
+
+.skill-item:hover {
+  border-color: rgba(217, 125, 58, 0.2);
+  transform: translateX(4px);
+}
+
+.skill-number {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.6rem;
+  color: var(--orange);
+  opacity: 0.4;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.skill-text {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+  position: relative;
+  z-index: 1;
+}
+
+/* Training Details */
+.details {
+  background: var(--black);
+}
+
+.details-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+}
+
+.detail-info { display: flex; flex-direction: column; gap: 30px; }
+
+.detail-block {
+  padding-bottom: 28px;
+  border-bottom: 1px solid rgba(217, 125, 58, 0.1);
+}
+
+.detail-block:last-child { border-bottom: none; }
+
+.detail-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.detail-value {
+  font-size: 1rem;
+  color: var(--cream);
+  line-height: 1.6;
+}
+
+/* FAQ */
+.faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  border: 1px solid rgba(217, 125, 58, 0.1);
+  transition: border-color 0.3s;
+}
+
+.faq-item:hover,
+.faq-item.active {
+  border-color: rgba(217, 125, 58, 0.25);
+}
+
+.faq-question {
+  padding: 20px 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.faq-question h4 {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--cream);
+}
+
+.faq-icon {
+  width: 20px;
+  height: 20px;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.faq-icon::before,
+.faq-icon::after {
+  content: '';
+  position: absolute;
+  background: var(--orange);
+  transition: transform 0.3s;
+}
+
+.faq-icon::before {
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.faq-icon::after {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.faq-item.active .faq-icon::after {
+  transform: translateX(-50%) rotate(90deg);
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s cubic-bezier(0.25, 0.1, 0, 1);
+}
+
+.faq-answer-inner {
+  padding: 0 24px 20px;
+}
+
+.faq-answer p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: var(--cream-dark);
+  opacity: 0.8;
+}
+
+/* CTA Section */
+.cta-section {
+  padding: 160px 40px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 50%, rgba(74, 44, 42, 0.35) 0%, var(--black) 70%);
+  position: relative;
+}
+
+.cta-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(217, 125, 58, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(217, 125, 58, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(ellipse at center, black 20%, transparent 60%);
+}
+
+.cta-content {
+  position: relative;
+  z-index: 1;
+}
+
+.cta-section .section-title {
+  margin-bottom: 16px;
+}
+
+.cta-tagline {
+  font-family: 'Source Serif 4', serif;
+  font-size: 1.15rem;
+  color: var(--cream-dark);
+  opacity: 0.7;
+  margin-bottom: 50px;
+  font-style: italic;
+}
+
+/* Contact */
+.contact {
+  background: rgba(46, 26, 25, 0.2);
+  border-top: 1px solid rgba(217, 125, 58, 0.08);
+}
+
+.contact-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 80px;
+}
+
+.contact-info { display: flex; flex-direction: column; gap: 40px; }
+
+.contact-block { display: flex; flex-direction: column; gap: 8px; }
+
+.contact-block-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.contact-block-value {
+  font-size: 1rem;
+  color: var(--cream);
+  line-height: 1.5;
+}
+
+.contact-block-value a {
+  color: var(--cream);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.contact-block-value a:hover { color: var(--orange); }
+
+.contact-form { display: flex; flex-direction: column; gap: 20px; }
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  background: rgba(74, 44, 42, 0.15);
+  border: 1px solid rgba(217, 125, 58, 0.15);
+  padding: 14px 18px;
+  color: var(--cream);
+  font-family: 'Source Serif 4', serif;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.3s, background 0.3s;
+  -webkit-appearance: none;
+}
+
+.form-group select {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.form-group select option {
+  background: var(--brown-deep);
+  color: var(--cream);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--orange);
+  background: rgba(74, 44, 42, 0.25);
+}
+
+.form-group textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: rgba(245, 230, 211, 0.3);
+}
+
+.form-submit {
+  align-self: flex-start;
+}
+
+/* Footer */
+footer {
+  padding: 50px 40px;
+  border-top: 1px solid rgba(217, 125, 58, 0.08);
+  background: var(--black);
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.footer-logo {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  color: var(--cream);
+  letter-spacing: 0.08em;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: var(--cream-dark);
+  opacity: 0.5;
+}
+
+/* Reveal animations */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-40px);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(40px);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .philosophy-grid { grid-template-columns: 1fr; gap: 50px; }
+  .philosophy-left { position: relative; top: auto; }
+  .coaches-grid { grid-template-columns: 1fr; }
+  .details-wrapper { grid-template-columns: 1fr; gap: 60px; }
+  .contact-wrapper { grid-template-columns: 1fr; gap: 50px; }
+}
+
+@media (max-width: 768px) {
+  section { padding: 80px 24px; }
+  
+  .nav-links { display: none; }
+  .nav-hamburger { display: flex; }
+  
+  .skills-list { grid-template-columns: 1fr; }
+  .programs-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  
+  .hero h1 { font-size: clamp(3rem, 14vw, 5rem); }
+  
+  .coach-stats { gap: 20px; }
+  
+  .cta-section { padding: 100px 24px; }
+}
+
+@media (max-width: 480px) {
+  nav { padding: 16px 20px; }
+  section { padding: 60px 16px; }
+  .program-card { padding: 30px 22px; }
+  .coach-card { padding: 36px 24px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Loading Screen -->
+<div class="loader">
+  <div class="loader-barbell">
+    <div class="loader-plate-lg" id="lp1"></div>
+    <div class="loader-plate" id="lp2"></div>
+    <div class="loader-bar"></div>
+    <div class="loader-plate" id="lp3"></div>
+    <div class="loader-plate-lg" id="lp4"></div>
+  </div>
+  <div class="loader-text" id="loader-text">LOADING THE WEIGHT</div>
+</div>
+
+<!-- Navigation -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="10" width="5" height="12" rx="1" fill="#D97D3A"/>
+      <rect x="7" y="8" width="4" height="16" rx="1" fill="#B8612A"/>
+      <rect x="11" y="14" width="10" height="4" rx="1" fill="#F5E6D3"/>
+      <rect x="21" y="8" width="4" height="16" rx="1" fill="#B8612A"/>
+      <rect x="25" y="10" width="5" height="12" rx="1" fill="#D97D3A"/>
+    </svg>
+    HEAVYWEIGHT LINEMEN
+  </a>
+  <ul class="nav-links">
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#programs">Programs</a></li>
+    <li><a href="#coaching">Coaches</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#details">Details</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#philosophy" onclick="toggleMenu()">Philosophy</a>
+  <a href="#programs" onclick="toggleMenu()">Programs</a>
+  <a href="#coaching" onclick="toggleMenu()">Coaches</a>
+  <a href="#skills" onclick="toggleMenu()">Skills</a>
+  <a href="#details" onclick="toggleMenu()">Details</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg-grid"></div>
+  <div class="hero-particles" id="particles"></div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span>Salinas, California</span>
+    </div>
+    <h1>
+      <span class="line"><span class="line-inner">BUILT DIFFERENT.</span></span>
+      <span class="line"><span class="line-inner">TRAINED <span class="highlight">HEAVY.</span></span></span>
+    </h1>
+    <p class="hero-sub">Elite offensive line training in Salinas, California</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary">Get Started <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      <a href="#programs" class="btn-secondary">View Programs</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- Barbell Divider -->
+<div class="barbell-divider">
+  <div class="plate"></div>
+  <div class="plate-lg"></div>
+  <div class="collar"></div>
+  <div class="bar"></div>
+  <div class="collar"></div>
+  <div class="plate-lg"></div>
+  <div class="plate"></div>
+</div>
+
+<!-- Philosophy -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-grid">
+    <div class="philosophy-left">
+      <div class="section-label reveal">Our Foundation</div>
+      <h2 class="section-title reveal">TECHNIQUE.<br>POWER.<br><span style="color:var(--orange)">DOMINANCE.</span></h2>
+      <p class="section-subtitle reveal">Great linemen aren't born—they're built. Through systematic development of technique, functional strength, and football intelligence, we develop athletes who control the line of scrimmage on every snap.</p>
+    </div>
+    <div class="pillars">
+      <div class="pillar reveal" data-pillar>
+        <div class="pillar-header" onclick="togglePillar(this)">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+          </div>
+          <span class="pillar-title">Technique Mastery</span>
+          <span class="pillar-toggle">+</span>
+        </div>
+        <div class="pillar-body">
+          <p>Footwork, hand placement, and leverage mechanics form the bedrock of dominant line play. We break down every movement into teachable, repeatable components—building muscle memory through thousands of reps until proper technique becomes instinct. From initial stance to finish, every detail matters.</p>
+        </div>
+      </div>
+      <div class="pillar reveal" data-pillar>
+        <div class="pillar-header" onclick="togglePillar(this)">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 12h8"/><path d="M12 8v8"/></svg>
+          </div>
+          <span class="pillar-title">Functional Strength</span>
+          <span class="pillar-toggle">+</span>
+        </div>
+        <div class="pillar-body">
+          <p>Football power, not bodybuilding. We develop explosive strength that translates directly to the field—drive blocking power, anchor strength, and the functional athleticism needed to dominate in space. Every exercise has a purpose connected to on-field performance.</p>
+        </div>
+      </div>
+      <div class="pillar reveal" data-pillar>
+        <div class="pillar-header" onclick="togglePillar(this)">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2v20"/><path d="M2 12h20"/><circle cx="12" cy="12" r="4"/></svg>
+          </div>
+          <span class="pillar-title">Mental Toughness</span>
+          <span class="pillar-toggle">+</span>
+        </div>
+        <div class="pillar-body">
+          <p>Finishing blocks, relentless effort, and the discipline to execute when fatigue sets in. We develop linemen who play through the whistle every rep, who embrace contact, and who understand that the trenches are won by the player who refuses to quit. Toughness isn't optional—it's the standard.</p>
+        </div>
+      </div>
+      <div class="pillar reveal" data-pillar>
+        <div class="pillar-header" onclick="togglePillar(this)">
+          <div class="pillar-icon">
+            <svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 8h20"/><path d="M9 4v16"/></svg>
+          </div>
+          <span class="pillar-title">Film Study</span>
+          <span class="pillar-toggle">+</span>
+        </div>
+        <div class="pillar-body">
+          <p>Understanding defensive schemes, reading fronts, and making real-time adjustments that separate good linemen from great ones. Our athletes learn to study film, recognize alignment cues, and anticipate the chess match in the trenches before the snap. Intelligence wins in the fourth quarter.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Programs -->
+<section class="programs" id="programs">
+  <div class="programs-header">
+    <div class="section-label reveal">Training Programs</div>
+    <h2 class="section-title reveal">FIND YOUR<br><span style="color:var(--orange)">LEVEL</span></h2>
+    <p class="section-subtitle reveal" style="margin:0 auto">Structured programs for every stage of development. From fundamentals to advanced technique, we meet athletes where they are and push them to the next level.</p>
+  </div>
+  <div class="programs-grid">
+    <div class="program-card reveal" data-tilt>
+      <div class="program-level">Foundation</div>
+      <h3>YOUTH DEVELOPMENT</h3>
+      <div class="program-ages">Ages 10–13</div>
+      <p>Building the right habits from day one. Proper stance mechanics, basic footwork patterns, and the fundamentals that will carry through an entire career.</p>
+      <ul class="program-features">
+        <li>Proper three-point stance</li>
+        <li>Basic footwork and movement</li>
+        <li>Introduction to blocking technique</li>
+        <li>Strength foundations</li>
+        <li>Football character development</li>
+      </ul>
+      <a href="#contact" class="program-cta">Contact for Details <svg viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+    </div>
+    <div class="program-card reveal" data-tilt>
+      <div class="program-level">Advanced</div>
+      <h3>HIGH SCHOOL TRAINING</h3>
+      <div class="program-ages">Ages 14–18</div>
+      <p>Advanced technique work, strength progression, and film study for athletes preparing to compete at the varsity and collegiate level.</p>
+      <ul class="program-features">
+        <li>Advanced pass protection</li>
+        <li>Run blocking schemes</li>
+        <li>Strength & power development</li>
+        <li>Film study & football IQ</li>
+        <li>College preparation</li>
+      </ul>
+      <a href="#contact" class="program-cta">Contact for Details <svg viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+    </div>
+    <div class="program-card reveal" data-tilt>
+      <div class="program-level">Specialist</div>
+      <h3>POSITION-SPECIFIC</h3>
+      <div class="program-ages">Guard · Tackle · Center</div>
+      <p>Targeted development for each position along the offensive line. Every position has unique demands—we train the specific skills each requires.</p>
+      <ul class="program-features">
+        <li>Position-specific technique</li>
+        <li>Leverage & hand combat</li>
+        <li>Scheme-specific assignments</li>
+        <li>Game situation work</li>
+        <li>Individual film breakdown</li>
+      </ul>
+      <a href="#contact" class="program-cta">Contact for Details <svg viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+    </div>
+    <div class="program-card reveal" data-tilt>
+      <div class="program-level">Conditioning</div>
+      <h3>OFF-SEASON</h3>
+      <div class="program-ages">All Levels</div>
+      <p>Dedicated strength and conditioning programs designed for linemen. Build the power base during the off-season that translates to in-season dominance.</p>
+      <ul class="program-features">
+        <li>Lineman-specific strength</li>
+        <li>Explosive power training</li>
+        <li>Mobility & flexibility</li>
+        <li>Speed & agility work</li>
+        <li>Nutrition guidance</li>
+      </ul>
+      <a href="#contact" class="program-cta">Contact for Details <svg viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Coaching -->
+<section class="coaching" id="coaching">
+  <div class="coaching-wrapper">
+    <div class="section-label reveal">The Coaches</div>
+    <h2 class="section-title reveal">BUILT IN THE<br><span style="color:var(--orange)">TRENCHES</span></h2>
+    <p class="section-subtitle reveal">Combined decades of experience developing linemen who dominate at the point of attack. Two coaches, one standard: excellence.</p>
+
+    <div class="coaches-grid">
+      <!-- Coach Velasquez -->
+      <div class="coach-card reveal-left">
+        <div class="coach-label">Head Coach</div>
+        <h3 class="coach-name">ANTONIO VELASQUEZ</h3>
+        <div class="coach-title-text">Offensive & Defensive Line Coach</div>
+        <p class="coach-bio">Coach Velasquez has dedicated his career to the art and science of line play since 2010. His areas of emphasis—footwork, hand placement, leverage, pad level, and football IQ—form the technical backbone of Heavyweight Linemen. He develops athletes through consistency, accountability, and relentless attention to detail, balancing physical development with mental toughness to ensure players are prepared for the demands of competition and life beyond the field.</p>
+        <div class="coach-stats">
+          <div class="coach-stat">
+            <span class="coach-stat-value">15+</span>
+            <span class="coach-stat-label">Years Coaching</span>
+          </div>
+          <div class="coach-stat">
+            <span class="coach-stat-value">OL/DL</span>
+            <span class="coach-stat-label">Specialization</span>
+          </div>
+          <div class="coach-stat">
+            <span class="coach-stat-value">2010</span>
+            <span class="coach-stat-label">Since</span>
+          </div>
+        </div>
+        <div class="coach-quote">
+          <p>"Great linemen are developed through consistency, accountability, and attention to detail."</p>
+        </div>
+      </div>
+
+      <!-- Coach Paiz -->
+      <div class="coach-card reveal-right">
+        <div class="coach-label">Lead Instructor</div>
+        <h3 class="coach-name">COACH ULI PAIZ</h3>
+        <div class="coach-title-text">Offensive & Defensive Line Specialist</div>
+        <p class="coach-bio">Coach Paiz has been coaching since 2012, dedicating his career to developing offensive and defensive linemen through detailed instruction, high standards, and a commitment to fundamentals. He has coached across multiple roles—Defensive Coordinator, Offensive Coordinator, and Head Coach—giving him a comprehensive understanding of both sides of the ball. Selected to coach the offensive line for the Monterey County All-Star Game, his unit paved the way for a decisive victory.</p>
+        <div class="coach-stats">
+          <div class="coach-stat">
+            <span class="coach-stat-value">13+</span>
+            <span class="coach-stat-label">Years Coaching</span>
+          </div>
+          <div class="coach-stat">
+            <span class="coach-stat-value">ALL-STAR</span>
+            <span class="coach-stat-label">Game Selected</span>
+          </div>
+          <div class="coach-stat">
+            <span class="coach-stat-value">2012</span>
+            <span class="coach-stat-label">Since</span>
+          </div>
+        </div>
+        <div class="coach-quote">
+          <p>"Champions are made in the trenches. Let's get to work."</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What You'll Learn -->
+<section class="skills" id="skills">
+  <div class="skills-wrapper">
+    <div class="skills-header">
+      <div class="section-label reveal">Curriculum</div>
+      <h2 class="section-title reveal">WHAT YOU'LL<br><span style="color:var(--orange)">LEARN</span></h2>
+    </div>
+    <div class="skills-list">
+      <div class="skill-item reveal">
+        <span class="skill-number">01</span>
+        <span class="skill-text">Proper Three-Point Stance & Explosive Get-Off</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">02</span>
+        <span class="skill-text">Pass Protection Techniques & Footwork</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">03</span>
+        <span class="skill-text">Run Blocking Schemes & Leverage</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">04</span>
+        <span class="skill-text">Hand Placement & Punch Mechanics</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">05</span>
+        <span class="skill-text">Anchor Technique & Base Strength</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">06</span>
+        <span class="skill-text">Film Study Fundamentals & Scheme Recognition</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">07</span>
+        <span class="skill-text">Pad Level Control & Body Positioning</span>
+      </div>
+      <div class="skill-item reveal">
+        <span class="skill-number">08</span>
+        <span class="skill-text">Combo Blocks & Double-Team Technique</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Training Details + FAQ -->
+<section class="details" id="details">
+  <div class="details-wrapper">
+    <div class="detail-info">
+      <div class="section-label reveal">Training Details</div>
+      <h2 class="section-title reveal">THE<br><span style="color:var(--orange)">DETAILS</span></h2>
+      <div class="detail-block reveal">
+        <div class="detail-label">Location</div>
+        <div class="detail-value">Salinas, California</div>
+      </div>
+      <div class="detail-block reveal">
+        <div class="detail-label">Session Structure</div>
+        <div class="detail-value">Small group training (3–6 athletes) or one-on-one sessions for focused development</div>
+      </div>
+      <div class="detail-block reveal">
+        <div class="detail-label">Equipment</div>
+        <div class="detail-value">Heavy bags, leverage tools, and functional strength equipment</div>
+      </div>
+      <div class="detail-block reveal">
+        <div class="detail-label">Schedule</div>
+        <div class="detail-value">Flexible scheduling with weekend and evening availability</div>
+      </div>
+      <div class="detail-block reveal">
+        <div class="detail-label">Pricing</div>
+        <div class="detail-value">Contact us for program pricing and package options</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-label reveal" style="margin-bottom:30px">FAQ</div>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>What experience level does my athlete need?</h4>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>We work with athletes at every level—from complete beginners learning their first stance to varsity players preparing for college. Our programs are structured by age and experience, and sessions are tailored to meet each athlete exactly where they are.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>What should athletes bring to training?</h4>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Athletic clothing, cleats, and water. All training equipment—bags, leverage tools—is provided. Athletes should come ready to work and prepared to be coached hard.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>How long are training sessions?</h4>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>Sessions typically run 60–90 minutes depending on the program and group size. Every minute is structured and purposeful—there's no standing around. We believe in high-quality reps over high-volume filler.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Do you only train offensive linemen?</h4>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>While our core focus is offensive line development, our coaches bring deep expertise in defensive line play as well. The techniques, strength development, and football IQ we build apply to both sides of the ball. Contact us to discuss defensive line training options.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            <h4>Can this help my athlete get recruited?</h4>
+            <div class="faq-icon"></div>
+          </div>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">
+              <p>We've developed multiple athletes who have gone on to play at the collegiate level. While we can't guarantee recruitment, we build the technical foundation, football intelligence, and physical tools that college coaches look for—and we help prepare athletes for that next step.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-content">
+    <div class="section-label reveal" style="justify-content:center">
+      <span style="display:none">—</span>Ready?
+    </div>
+    <h2 class="section-title reveal">MASTER THE FUNDAMENTALS.<br>BUILD REAL STRENGTH.<br><span style="color:var(--orange)">DOMINATE THE LINE.</span></h2>
+    <p class="cta-tagline reveal">Technique and power. That's the foundation.</p>
+    <div class="reveal">
+      <a href="#contact" class="btn-primary">Get Started <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section class="contact" id="contact">
+  <div class="contact-wrapper">
+    <div class="contact-info">
+      <div>
+        <div class="section-label reveal">Contact</div>
+        <h2 class="section-title reveal">LET'S<br><span style="color:var(--orange)">WORK</span></h2>
+      </div>
+      <div class="contact-block reveal">
+        <div class="contact-block-label">Email</div>
+        <div class="contact-block-value">
+          <a href="mailto:contact@heavyweightlineman.com">contact@heavyweightlineman.com</a>
+        </div>
+      </div>
+      <div class="contact-block reveal">
+        <div class="contact-block-label">Location</div>
+        <div class="contact-block-value">Salinas, California</div>
+      </div>
+      <div class="contact-block reveal">
+        <div class="contact-block-label">Training Area</div>
+        <div class="contact-block-value">Various locations throughout Salinas</div>
+      </div>
+    </div>
+    <!-- 
+      FORM SETUP: Sign up free at https://formspree.io
+      1. Create account, add form, get your form ID
+      2. Replace YOUR_FORM_ID below with your actual ID
+      3. Submissions will go directly to contact@heavyweightlineman.com
+    -->
+    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Athlete or parent name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="your@email.com" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="phone">Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="(000) 000-0000">
+        </div>
+        <div class="form-group">
+          <label for="level">Age / Grade Level</label>
+          <select id="level" name="level">
+            <option value="">Select level</option>
+            <option value="youth">Youth (Ages 10-13)</option>
+            <option value="freshman">Freshman (9th Grade)</option>
+            <option value="sophomore">Sophomore (10th Grade)</option>
+            <option value="junior">Junior (11th Grade)</option>
+            <option value="senior">Senior (12th Grade)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="Tell us about your athlete and training goals..."></textarea>
+      </div>
+      <div class="form-submit">
+        <button type="submit" class="btn-primary">Send Message <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">HEAVYWEIGHT LINEMEN</div>
+    <div class="footer-copy">&copy; 2025 Heavyweight Linemen Academy. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// ===== LOADER =====
+window.addEventListener('load', () => {
+  const plates = ['lp1', 'lp2', 'lp3', 'lp4'];
+  const loaderText = document.getElementById('loader-text');
+  
+  gsap.to(loaderText, { opacity: 1, duration: 0.4, delay: 0.2 });
+  
+  plates.forEach((id, i) => {
+    setTimeout(() => {
+      document.getElementById(id).classList.add('loaded');
+    }, 300 + i * 200);
+  });
+  
+  setTimeout(() => {
+    gsap.to('.loader', {
+      yPercent: -100,
+      duration: 0.8,
+      ease: 'power3.inOut',
+      onComplete: () => {
+        document.querySelector('.loader').style.display = 'none';
+        animateHero();
+      }
+    });
+  }, 1400);
+});
+
+// ===== HERO ANIMATIONS =====
+function animateHero() {
+  const tl = gsap.timeline();
+  
+  tl.to('.hero .line-inner', {
+    y: 0,
+    duration: 1,
+    stagger: 0.15,
+    ease: 'power4.out'
+  })
+  .to('.hero-badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.5')
+  .to('.hero-sub', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+  .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.2')
+  .to('.hero-scroll', { opacity: 0.6, duration: 0.6 }, '-=0.1');
+}
+
+// ===== PARTICLES =====
+const particleContainer = document.getElementById('particles');
+for (let i = 0; i < 30; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.left = Math.random() * 100 + '%';
+  p.style.top = Math.random() * 100 + '%';
+  particleContainer.appendChild(p);
+  
+  gsap.to(p, {
+    opacity: Math.random() * 0.4 + 0.1,
+    duration: Math.random() * 3 + 2,
+    repeat: -1,
+    yoyo: true,
+    delay: Math.random() * 3
+  });
+  
+  gsap.to(p, {
+    y: Math.random() * -80 - 20,
+    x: Math.random() * 40 - 20,
+    duration: Math.random() * 6 + 4,
+    repeat: -1,
+    yoyo: true,
+    ease: 'sine.inOut',
+    delay: Math.random() * 3
+  });
+}
+
+// ===== SCROLL ANIMATIONS =====
+gsap.registerPlugin(ScrollTrigger);
+
+// Reveal animations
+document.querySelectorAll('.reveal').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      once: true
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.8,
+    ease: 'power2.out'
+  });
+});
+
+document.querySelectorAll('.reveal-left').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      once: true
+    },
+    opacity: 1,
+    x: 0,
+    duration: 0.9,
+    ease: 'power2.out'
+  });
+});
+
+document.querySelectorAll('.reveal-right').forEach(el => {
+  gsap.to(el, {
+    scrollTrigger: {
+      trigger: el,
+      start: 'top 85%',
+      once: true
+    },
+    opacity: 1,
+    x: 0,
+    duration: 0.9,
+    ease: 'power2.out'
+  });
+});
+
+// Stagger skill items
+gsap.utils.toArray('.skill-item').forEach((item, i) => {
+  gsap.to(item, {
+    scrollTrigger: {
+      trigger: item,
+      start: 'top 88%',
+      once: true
+    },
+    opacity: 1,
+    y: 0,
+    duration: 0.6,
+    delay: i * 0.08,
+    ease: 'power2.out'
+  });
+});
+
+// Barbell divider
+gsap.to('.barbell-divider', {
+  scrollTrigger: {
+    trigger: '.barbell-divider',
+    start: 'top 85%',
+    once: true
+  },
+  opacity: 0.5,
+  duration: 1,
+  ease: 'power2.out'
+});
+
+// ===== NAV SCROLL =====
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+  const navbar = document.getElementById('navbar');
+  if (window.scrollY > 80) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  lastScroll = window.scrollY;
+});
+
+// ===== MOBILE MENU =====
+function toggleMenu() {
+  const menu = document.getElementById('mobileMenu');
+  const hamburger = document.getElementById('hamburger');
+  menu.classList.toggle('active');
+  
+  const spans = hamburger.querySelectorAll('span');
+  if (menu.classList.contains('active')) {
+    spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(6px, -6px)';
+  } else {
+    spans[0].style.transform = 'none';
+    spans[1].style.opacity = '1';
+    spans[2].style.transform = 'none';
+  }
+}
+
+// ===== PILLAR ACCORDION =====
+function togglePillar(header) {
+  const pillar = header.closest('.pillar');
+  const wasActive = pillar.classList.contains('active');
+  
+  document.querySelectorAll('.pillar').forEach(p => p.classList.remove('active'));
+  
+  if (!wasActive) {
+    pillar.classList.add('active');
+  }
+}
+
+// ===== FAQ ACCORDION =====
+function toggleFaq(question) {
+  const item = question.closest('.faq-item');
+  const answer = item.querySelector('.faq-answer');
+  const wasActive = item.classList.contains('active');
+  
+  document.querySelectorAll('.faq-item').forEach(f => {
+    f.classList.remove('active');
+    f.querySelector('.faq-answer').style.maxHeight = '0';
+  });
+  
+  if (!wasActive) {
+    item.classList.add('active');
+    answer.style.maxHeight = answer.scrollHeight + 'px';
+  }
+}
+
+// ===== 3D CARD TILT =====
+document.querySelectorAll('[data-tilt]').forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    
+    const tiltX = (y - 0.5) * 6;
+    const tiltY = (x - 0.5) * -6;
+    
+    card.style.transform = `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg) translateY(-4px)`;
+    card.style.setProperty('--mouse-x', x * 100 + '%');
+    card.style.setProperty('--mouse-y', y * 100 + '%');
+  });
+  
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0)';
+  });
+});
+
+// ===== HERO PARALLAX =====
+const hero = document.querySelector('.hero');
+hero.addEventListener('mousemove', (e) => {
+  const x = (e.clientX / window.innerWidth - 0.5) * 2;
+  const y = (e.clientY / window.innerHeight - 0.5) * 2;
+  
+  gsap.to('.hero-bg-grid', { x: x * 15, y: y * 15, duration: 1, ease: 'power2.out' });
+  gsap.to('#particles', { x: x * 8, y: y * 8, duration: 1.2, ease: 'power2.out' });
+});
+
+// ===== FORM HANDLING (Formspree) =====
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = form.querySelector('button[type="submit"]');
+  const originalText = btn.innerHTML;
+  
+  btn.innerHTML = 'SENDING... <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg>';
+  btn.style.opacity = '0.7';
+  btn.disabled = true;
+  
+  try {
+    const response = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    
+    if (response.ok) {
+      btn.innerHTML = 'MESSAGE SENT ✓';
+      btn.style.opacity = '1';
+      btn.style.background = '#2E7D32';
+      form.reset();
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+      }, 3000);
+    } else {
+      // Fallback: open mailto
+      const name = form.querySelector('#name').value;
+      const email = form.querySelector('#email').value;
+      const message = form.querySelector('#message').value;
+      window.location.href = `mailto:contact@heavyweightlineman.com?subject=Training Inquiry from ${name}&body=${encodeURIComponent(message + '\n\nFrom: ' + name + ' (' + email + ')')}`;
+      btn.innerHTML = originalText;
+      btn.style.opacity = '1';
+      btn.disabled = false;
+    }
+  } catch (err) {
+    window.location.href = 'mailto:contact@heavyweightlineman.com?subject=Training Inquiry';
+    btn.innerHTML = originalText;
+    btn.style.opacity = '1';
+    btn.disabled = false;
+  }
+});
+
+// ===== SMOOTH SCROLL =====
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
