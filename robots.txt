@@ -1,0 +1,5 @@
+# robots.txt for https://heavyweightlineman.com/
+User-agent: *
+Allow: /
+
+Sitemap: https://heavyweightlineman.com/sitemap.xml
