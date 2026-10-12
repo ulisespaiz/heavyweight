@@ -69,6 +69,8 @@ setTimeout(function () { if (!window.gsap) document.documentElement.classList.re
         { "@type": "City", "name": "Monterey, CA" },
         { "@type": "City", "name": "Gonzales, CA" },
         { "@type": "City", "name": "Soledad, CA" },
+        { "@type": "City", "name": "Greenfield, CA" },
+        { "@type": "City", "name": "King City, CA" },
         { "@type": "AdministrativeArea", "name": "Monterey County, CA" }
       ],
       "knowsAbout": ["Offensive line technique", "Pass protection", "Run blocking", "Defensive line play", "Football strength and conditioning"],
@@ -146,6 +148,62 @@ body {
   background: var(--black);
   color: var(--cream);
   overflow-x: hidden;
+}
+
+/* Loading Screen: only shown when JS + GSAP will run it (see .js rule below) */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: var(--black);
+  z-index: 9999;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.js .loader { display: flex; }
+
+.loader-barbell {
+  display: flex;
+  align-items: center;
+  gap: 0;
+}
+
+.loader-bar {
+  width: 120px;
+  height: 8px;
+  background: var(--cream-dark);
+  border-radius: 4px;
+}
+
+.loader-plate {
+  width: 0;
+  height: 50px;
+  background: var(--orange);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.loader-plate.loaded { width: 20px; }
+
+.loader-plate-lg {
+  width: 0;
+  height: 70px;
+  background: var(--orange-dark);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.loader-plate-lg.loaded { width: 25px; }
+
+.loader-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.2rem;
+  letter-spacing: 0.3em;
+  color: var(--cream-dark);
+  opacity: 0;
 }
 
 /* Navigation */
@@ -1400,6 +1458,18 @@ footer {
 </head>
 <body>
 
+<!-- Loading Screen -->
+<div class="loader" aria-hidden="true">
+  <div class="loader-barbell">
+    <div class="loader-plate-lg" id="lp1"></div>
+    <div class="loader-plate" id="lp2"></div>
+    <div class="loader-bar"></div>
+    <div class="loader-plate" id="lp3"></div>
+    <div class="loader-plate-lg" id="lp4"></div>
+  </div>
+  <div class="loader-text" id="loader-text">LOADING THE WEIGHT</div>
+</div>
+
 <!-- Navigation -->
 <header>
 <nav id="navbar" aria-label="Main">
@@ -1800,7 +1870,7 @@ footer {
           </button></h4>
           <div class="faq-answer" id="faq-6">
             <div class="faq-answer-inner">
-              <p>Sessions are held at training locations in Salinas, California. We work with linemen from across Monterey County, including Prunedale, Castroville, Marina, Seaside, Monterey, Gonzales, and Soledad. Contact us and we'll confirm the location for your athlete's sessions.</p>
+              <p>Sessions are held at training locations in Salinas, California. We work with linemen from across Monterey County, including Prunedale, Castroville, Marina, Seaside, Monterey, and South County (Gonzales, Soledad, Greenfield, and King City). Contact us and we'll confirm the location for your athlete's sessions.</p>
             </div>
           </div>
         </div>
@@ -1843,7 +1913,7 @@ footer {
       </div>
       <div class="contact-block reveal">
         <div class="contact-block-label">Training Area</div>
-        <div class="contact-block-value">Training locations throughout Salinas. Serving linemen from Prunedale, Castroville, Marina, Seaside, Monterey, Gonzales, Soledad, and across Monterey County.</div>
+        <div class="contact-block-value">Training locations throughout Salinas. Serving linemen from Prunedale, Castroville, Marina, Seaside, Monterey, South County (Gonzales, Soledad, Greenfield, King City), and across Monterey County.</div>
       </div>
     </div>
     <!--
@@ -1919,15 +1989,47 @@ document.getElementById('year').textContent = new Date().getFullYear();
 
 if (animate) {
   // ===== HERO ANIMATIONS =====
-  // Start once fonts are ready (capped) so the headline doesn't reflow mid-animation.
-  const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
-  Promise.race([fontsReady, new Promise(r => setTimeout(r, 600))]).then(() => {
+  function animateHero() {
     gsap.timeline()
       .to('.hero-title .line-inner', { y: 0, duration: 1, stagger: 0.15, ease: 'power4.out' })
       .to('.hero-badge', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.5')
       .to('.hero-cta', { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }, '-=0.3')
       .to('.hero-scroll', { opacity: 0.6, duration: 0.6 }, '-=0.1');
-  });
+  }
+
+  // ===== LOADER =====
+  // Plays once per browser session, starting as soon as the page is parsed rather than
+  // after every image/script finishes loading. Repeat views in the same session skip it.
+  const loader = document.querySelector('.loader');
+  let introSeen = false;
+  try {
+    introSeen = sessionStorage.getItem('hwl-intro') === '1';
+    sessionStorage.setItem('hwl-intro', '1');
+  } catch (e) {}
+
+  if (introSeen) {
+    loader.remove();
+    const fontsReady = document.fonts ? document.fonts.ready : Promise.resolve();
+    Promise.race([fontsReady, new Promise(r => setTimeout(r, 600))]).then(animateHero);
+  } else {
+    gsap.to('#loader-text', { opacity: 1, duration: 0.4, delay: 0.2 });
+
+    ['lp1', 'lp2', 'lp3', 'lp4'].forEach((id, i) => {
+      setTimeout(() => document.getElementById(id).classList.add('loaded'), 300 + i * 200);
+    });
+
+    setTimeout(() => {
+      gsap.to(loader, {
+        yPercent: -100,
+        duration: 0.8,
+        ease: 'power3.inOut',
+        onComplete: () => {
+          loader.remove();
+          animateHero();
+        }
+      });
+    }, 1400);
+  }
 
   // ===== PARTICLES =====
   const particleContainer = document.getElementById('particles');
