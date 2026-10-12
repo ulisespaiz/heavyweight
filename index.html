@@ -1395,6 +1395,231 @@ footer {
   opacity: 0.75;
 }
 
+/* Stats Band */
+.stats-band {
+  padding: 70px 40px;
+  border-top: 1px solid rgba(217, 125, 58, 0.1);
+  border-bottom: 1px solid rgba(217, 125, 58, 0.1);
+  background:
+    repeating-linear-gradient(90deg, transparent 0, transparent calc(10% - 1px), rgba(245, 230, 211, 0.04) calc(10% - 1px), rgba(245, 230, 211, 0.04) 10%),
+    linear-gradient(180deg, rgba(46, 26, 25, 0.35), rgba(26, 15, 14, 0.35));
+}
+
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  list-style: none;
+}
+
+.stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--orange);
+}
+
+.stat-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+}
+
+/* Skills Ticker */
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid rgba(217, 125, 58, 0.15);
+  border-bottom: 1px solid rgba(217, 125, 58, 0.15);
+  background: rgba(217, 125, 58, 0.06);
+  padding: 22px 0;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: ticker 40s linear infinite;
+}
+
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+.ticker-group {
+  display: inline-flex;
+  list-style: none;
+}
+
+.ticker-group li {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  display: inline-flex;
+  align-items: center;
+}
+
+.ticker-group li::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  margin: 0 32px;
+  background: var(--orange);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.ticker-group li:nth-child(even) { color: var(--orange-light); }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* How It Works */
+.process {
+  background: var(--black);
+}
+
+.process-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.process-header {
+  max-width: 700px;
+  margin-bottom: 70px;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  counter-reset: step;
+}
+
+.process-step {
+  position: relative;
+  padding: 44px 32px 36px;
+  background: rgba(74, 44, 42, 0.12);
+  border: 1px solid rgba(217, 125, 58, 0.1);
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s;
+}
+
+.process-step:hover {
+  border-color: rgba(217, 125, 58, 0.3);
+  transform: translateY(-4px);
+}
+
+.process-step::before {
+  counter-increment: step;
+  content: '0' counter(step);
+  position: absolute;
+  top: -18px;
+  right: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 7.5rem;
+  line-height: 1;
+  color: rgba(217, 125, 58, 0.08);
+  pointer-events: none;
+}
+
+.process-step::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), transparent);
+}
+
+.process-step-kicker {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.process-step h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+
+.process-step p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--cream-dark);
+  opacity: 0.85;
+}
+
+.process-cta {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Testimonials + Gallery: ready for real content, hidden until filled in (remove the hidden attribute) */
+.testimonials-grid {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.testimonial {
+  padding: 36px 32px;
+  border-left: 2px solid var(--orange);
+  background: rgba(217, 125, 58, 0.04);
+}
+
+.testimonial blockquote p {
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+
+.testimonial figcaption {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange-light);
+}
+
+.gallery-grid {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.9) contrast(1.05);
+}
+
 /* Reveal animations: hidden states apply only when the .js class is set (JS on, GSAP loaded, motion allowed) */
 .js .reveal {
   opacity: 0;
@@ -1420,6 +1645,10 @@ footer {
   html { scroll-behavior: auto; }
   .hero-badge-dot,
   .scroll-line { animation: none; }
+  .ticker { white-space: normal; }
+  .ticker-track { animation: none; display: block; text-align: center; }
+  .ticker-group { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+  .ticker-group[aria-hidden="true"] { display: none; }
 }
 
 /* Responsive */
@@ -1429,6 +1658,7 @@ footer {
   .coaches-grid { grid-template-columns: 1fr; }
   .details-wrapper { grid-template-columns: 1fr; gap: 60px; }
   .contact-wrapper { grid-template-columns: 1fr; gap: 50px; }
+  .process-steps { grid-template-columns: 1fr; max-width: 640px; }
 }
 
 @media (max-width: 768px) {
@@ -1438,6 +1668,8 @@ footer {
   .nav-hamburger { display: flex; }
   
   .skills-list { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+  .stats-band { padding: 56px 24px; }
   .programs-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   
@@ -1453,6 +1685,8 @@ footer {
   section { padding: 60px 16px; }
   .program-card { padding: 30px 22px; }
   .coach-card { padding: 36px 24px; }
+  .stats-band { padding: 48px 16px; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.18em; }
 }
 </style>
 </head>
@@ -1545,6 +1779,28 @@ footer {
   <div class="plate"></div>
 </div>
 
+<!-- Stats Band -->
+<section class="stats-band" aria-label="Heavyweight Linemen at a glance">
+  <ul class="stats-grid">
+    <li class="stat reveal">
+      <span class="stat-value"><span data-count="25">25</span>+</span>
+      <span class="stat-label">Years Combined Coaching</span>
+    </li>
+    <li class="stat reveal">
+      <span class="stat-value">3–6</span>
+      <span class="stat-label">Athletes Per Group</span>
+    </li>
+    <li class="stat reveal">
+      <span class="stat-value">60–90</span>
+      <span class="stat-label">Minute Sessions</span>
+    </li>
+    <li class="stat reveal">
+      <span class="stat-value">10–18</span>
+      <span class="stat-label">Ages Coached</span>
+    </li>
+  </ul>
+</section>
+
 <!-- Philosophy -->
 <section class="philosophy" id="philosophy">
   <div class="philosophy-grid">
@@ -1605,6 +1861,36 @@ footer {
     </div>
   </div>
 </section>
+
+<!-- Skills Ticker -->
+<div class="ticker">
+  <div class="ticker-track">
+    <ul class="ticker-group">
+      <li>Three-Point Stance</li>
+      <li>Explosive Get-Off</li>
+      <li>Pass Protection</li>
+      <li>Run Blocking</li>
+      <li>Hand Placement</li>
+      <li>Punch Mechanics</li>
+      <li>Anchor Strength</li>
+      <li>Pad Level</li>
+      <li>Combo Blocks</li>
+      <li>Film Study</li>
+    </ul>
+    <ul class="ticker-group" aria-hidden="true">
+      <li>Three-Point Stance</li>
+      <li>Explosive Get-Off</li>
+      <li>Pass Protection</li>
+      <li>Run Blocking</li>
+      <li>Hand Placement</li>
+      <li>Punch Mechanics</li>
+      <li>Anchor Strength</li>
+      <li>Pad Level</li>
+      <li>Combo Blocks</li>
+      <li>Film Study</li>
+    </ul>
+  </div>
+</div>
 
 <!-- Programs -->
 <section class="programs" id="programs">
@@ -1669,6 +1955,37 @@ footer {
         <li>Nutrition guidance</li>
       </ul>
       <a href="#contact" class="program-cta" aria-label="Contact us about Off-Season Conditioning">Contact for Details <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="process" id="how-it-works">
+  <div class="process-wrapper">
+    <div class="process-header">
+      <h2 class="section-label reveal">How Training Works</h2>
+      <p class="section-title reveal">THREE STEPS <br><span style="color:var(--orange)">TO THE LINE</span></p>
+      <p class="section-subtitle reveal">Getting started is simple. Tell us about your athlete, we place them in the right program, and the work begins.</p>
+    </div>
+    <ol class="process-steps">
+      <li class="process-step reveal">
+        <div class="process-step-kicker">Step One</div>
+        <h3>Reach Out</h3>
+        <p>Send us your athlete's age, grade, position, and goals through the contact form or by email. We'll follow up to answer questions and talk through options.</p>
+      </li>
+      <li class="process-step reveal">
+        <div class="process-step-kicker">Step Two</div>
+        <h3>Get Placed</h3>
+        <p>We match your athlete to the right program, whether that's youth development, high school, position-specific, or off-season, in a small group or one-on-one.</p>
+      </li>
+      <li class="process-step reveal">
+        <div class="process-step-kicker">Step Three</div>
+        <h3>Train &amp; Compete</h3>
+        <p>Structured 60–90 minute sessions where every rep is coached: stance, footwork, hands, leverage, and strength, all built to carry onto Friday nights.</p>
+      </li>
+    </ol>
+    <div class="process-cta reveal">
+      <a href="#contact" class="btn-primary">Start With Step One <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
     </div>
   </div>
 </section>
@@ -1875,6 +2192,43 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  RESULTS / TESTIMONIALS: hidden until there are real quotes.
+  To publish: replace the sample text in each <figure>, add or remove figures, then delete the hidden attribute.
+  Use first name + last initial and the athlete's grade/school only with the family's permission.
+-->
+<section class="testimonials" id="results" hidden>
+  <div class="coaching-wrapper">
+    <h2 class="section-label reveal">What Families Say</h2>
+    <p class="section-title reveal">PROOF IN <br><span style="color:var(--orange)">THE TRENCHES</span></p>
+    <div class="testimonials-grid">
+      <!-- Copy this block once per quote:
+      <figure class="testimonial reveal">
+        <blockquote><p>"Quote from the parent or athlete."</p></blockquote>
+        <figcaption>Maria G. · Parent of a junior at Salinas High</figcaption>
+      </figure>
+      -->
+    </div>
+  </div>
+</section>
+
+<!--
+  PHOTO GALLERY: hidden until there are real session photos.
+  To publish: put images in /images/, update src and alt (describe the drill, e.g. "High school lineman working pass-set footwork in Salinas"),
+  then delete the hidden attribute. Get a media release for any minor shown.
+-->
+<section class="gallery" id="gallery" hidden>
+  <div class="coaching-wrapper">
+    <h2 class="section-label reveal">Inside a Session</h2>
+    <p class="section-title reveal">IN THE <br><span style="color:var(--orange)">WORK</span></p>
+    <div class="gallery-grid">
+      <!-- Copy this line once per photo:
+      <img src="/images/session-1.jpg" alt="High school lineman working pass-set footwork in Salinas" width="800" height="600" loading="lazy">
+      -->
     </div>
   </div>
 </section>
@@ -2130,6 +2484,20 @@ if (animate) {
     });
   }
   ScrollTrigger.addEventListener('refresh', revealUnreachable);
+
+  // Count up the stats band numbers when they scroll into view (final values are already in the HTML)
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = +el.dataset.count;
+    const counter = { v: 0 };
+    el.textContent = '0';
+    gsap.to(counter, {
+      v: target,
+      duration: 1.6,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top bottom-=100', once: true },
+      onUpdate: () => { el.textContent = Math.round(counter.v); }
+    });
+  });
 
   // ===== HERO PARALLAX =====
   const hero = document.querySelector('.hero');
