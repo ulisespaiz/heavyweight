@@ -1,0 +1,11 @@
+{
+  // Static site served by Workers Static Assets (no Worker script).
+  // Workers Builds runs `npx wrangler deploy` on main and `npx wrangler versions upload` on other branches.
+  "name": "heavyweight",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./public",
+    // Serve public/404.html with a real 404 status for unknown paths
+    "not_found_handling": "404-page"
+  }
+}
