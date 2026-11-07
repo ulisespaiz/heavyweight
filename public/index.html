@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Offensive Line Training in Salinas, CA | Heavyweight Linemen</title>
-<meta name="description" content="Small-group and 1-on-1 offensive line training in Salinas, CA for youth and high school linemen. Stance, footwork, pass pro, run blocking and strength.">
+<meta name="description" content="Off-season registration is open: offensive and defensive line training in Salinas, CA for youth and high school linemen, starting January 2027. $1 per session.">
 <link rel="canonical" href="https://heavyweightlineman.com/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta name="theme-color" content="#1A0F0E">
@@ -16,14 +16,14 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:url" content="https://heavyweightlineman.com/">
 <meta property="og:title" content="Offensive Line Training in Salinas, CA | Heavyweight Linemen">
-<meta property="og:description" content="Youth and high school offensive line training in Salinas, CA. Small-group and 1-on-1 sessions with coaches Antonio Velasquez and Uli Paiz.">
+<meta property="og:description" content="Off-season registration open. Youth and high school line training in Salinas, CA starting January 2027: small groups and 1-on-1, $1 per session.">
 <meta property="og:image" content="https://heavyweightlineman.com/og-image.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="Heavyweight Linemen: offensive line training in Salinas, California">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Offensive Line Training in Salinas, CA | Heavyweight Linemen">
-<meta name="twitter:description" content="Youth and high school offensive line training in Salinas, CA.">
+<meta name="twitter:description" content="Off-season registration open: youth and high school line training in Salinas, CA, starting January 2027.">
 <meta name="twitter:image" content="https://heavyweightlineman.com/og-image.jpg">
 <link rel="preload" href="/fonts/bebas-neue-400.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/fonts/oswald-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -85,7 +85,8 @@ setTimeout(function () { if (!window.gsap) document.documentElement.classList.re
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Youth Development (Ages 10-13)", "serviceType": "Youth offensive line training" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High School Training (Ages 14-18)", "serviceType": "High school offensive line training" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Position-Specific Training (Guard, Tackle, Center)", "serviceType": "Offensive line position training" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Off-Season Conditioning", "serviceType": "Lineman strength and conditioning" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Off-Season Conditioning", "serviceType": "Lineman strength and conditioning" } },
+          { "@type": "Offer", "name": "2027 Off-Season Training (starts January 2027)", "price": "1.00", "priceCurrency": "USD", "description": "Per session. Offensive and defensive line training for youth (10-13) and high school (14-18) athletes, in small groups or 1-on-1.", "url": "https://heavyweightlineman.com/#register", "itemOffered": { "@type": "Service", "name": "2027 Off-Season Line Training", "serviceType": "Offensive and defensive line training" } }
         ]
       }
     }
@@ -1395,6 +1396,347 @@ footer {
   opacity: 0.75;
 }
 
+/* Off-Season Registration */
+.register {
+  background:
+    radial-gradient(ellipse at 15% 0%, rgba(217, 125, 58, 0.14) 0%, transparent 55%),
+    linear-gradient(180deg, rgba(46, 26, 25, 0.45), var(--black));
+  border-bottom: 1px solid rgba(217, 125, 58, 0.15);
+}
+
+.register-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 70px;
+  align-items: start;
+}
+
+.register-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--orange);
+  color: var(--black);
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+}
+
+.register-status::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--black);
+  animation: pulse 2s infinite;
+}
+
+.register-lead {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--cream-dark);
+  margin-bottom: 36px;
+  max-width: 520px;
+}
+
+.register-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.register-actions .btn-primary,
+.register-actions .btn-secondary { padding: 18px 28px; }
+
+.register-facts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: rgba(217, 125, 58, 0.15);
+  border: 1px solid rgba(217, 125, 58, 0.15);
+  list-style: none;
+}
+
+.register-fact {
+  background: var(--black);
+  padding: 26px 26px 24px;
+}
+
+.register-fact-wide { grid-column: 1 / -1; }
+
+.register-fact-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 8px;
+}
+
+.register-fact-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.9rem;
+  letter-spacing: 0.02em;
+  line-height: 1.05;
+  color: var(--cream);
+}
+
+.register-fact-note {
+  margin-top: 6px;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--cream-dark);
+  opacity: 0.85;
+}
+
+.nav-links a.nav-cta {
+  color: var(--black);
+  background: var(--orange);
+  padding: 6px 14px 6px;
+}
+
+.nav-links a.nav-cta::after { display: none; }
+.nav-links a.nav-cta:hover { color: var(--black); background: var(--orange-light); }
+.mobile-menu a.mobile-cta { color: var(--orange); }
+
+.form-note {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--cream-dark);
+  opacity: 0.8;
+}
+
+/* Stats Band */
+.stats-band {
+  padding: 70px 40px;
+  border-top: 1px solid rgba(217, 125, 58, 0.1);
+  border-bottom: 1px solid rgba(217, 125, 58, 0.1);
+  background:
+    repeating-linear-gradient(90deg, transparent 0, transparent calc(10% - 1px), rgba(245, 230, 211, 0.04) calc(10% - 1px), rgba(245, 230, 211, 0.04) 10%),
+    linear-gradient(180deg, rgba(46, 26, 25, 0.35), rgba(26, 15, 14, 0.35));
+}
+
+.stats-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+  list-style: none;
+}
+
+.stat {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.stat-value {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 6vw, 4.5rem);
+  line-height: 1;
+  color: var(--orange);
+}
+
+.stat-label {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--cream-dark);
+}
+
+/* Skills Ticker */
+.ticker {
+  overflow: hidden;
+  border-top: 1px solid rgba(217, 125, 58, 0.15);
+  border-bottom: 1px solid rgba(217, 125, 58, 0.15);
+  background: rgba(217, 125, 58, 0.06);
+  padding: 22px 0;
+  white-space: nowrap;
+}
+
+.ticker-track {
+  display: inline-flex;
+  animation: ticker 40s linear infinite;
+}
+
+.ticker:hover .ticker-track { animation-play-state: paused; }
+
+.ticker-group {
+  display: inline-flex;
+  list-style: none;
+}
+
+.ticker-group li {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(1.4rem, 3vw, 2rem);
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  display: inline-flex;
+  align-items: center;
+}
+
+.ticker-group li::after {
+  content: '';
+  width: 10px;
+  height: 10px;
+  margin: 0 32px;
+  background: var(--orange);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.ticker-group li:nth-child(even) { color: var(--orange-light); }
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* How It Works */
+.process {
+  background: var(--black);
+}
+
+.process-wrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.process-header {
+  max-width: 700px;
+  margin-bottom: 70px;
+}
+
+.process-steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  list-style: none;
+  counter-reset: step;
+}
+
+.process-step {
+  position: relative;
+  padding: 44px 32px 36px;
+  background: rgba(74, 44, 42, 0.12);
+  border: 1px solid rgba(217, 125, 58, 0.1);
+  overflow: hidden;
+  transition: border-color 0.4s, transform 0.4s;
+}
+
+.process-step:hover {
+  border-color: rgba(217, 125, 58, 0.3);
+  transform: translateY(-4px);
+}
+
+.process-step::before {
+  counter-increment: step;
+  content: '0' counter(step);
+  position: absolute;
+  top: -18px;
+  right: 10px;
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 7.5rem;
+  line-height: 1;
+  color: rgba(217, 125, 58, 0.08);
+  pointer-events: none;
+}
+
+.process-step::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(90deg, var(--orange), transparent);
+}
+
+.process-step-kicker {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--orange);
+  margin-bottom: 12px;
+}
+
+.process-step h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2rem;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  margin-bottom: 14px;
+}
+
+.process-step p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--cream-dark);
+  opacity: 0.85;
+}
+
+.process-cta {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Testimonials + Gallery: ready for real content, hidden until filled in (remove the hidden attribute) */
+.testimonials-grid {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.testimonial {
+  padding: 36px 32px;
+  border-left: 2px solid var(--orange);
+  background: rgba(217, 125, 58, 0.04);
+}
+
+.testimonial blockquote p {
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--cream);
+  margin-bottom: 20px;
+}
+
+.testimonial figcaption {
+  font-family: 'Oswald', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--orange-light);
+}
+
+.gallery-grid {
+  max-width: 1200px;
+  margin: 60px auto 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.gallery-grid img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+  filter: saturate(0.9) contrast(1.05);
+}
+
 /* Reveal animations: hidden states apply only when the .js class is set (JS on, GSAP loaded, motion allowed) */
 .js .reveal {
   opacity: 0;
@@ -1420,6 +1762,10 @@ footer {
   html { scroll-behavior: auto; }
   .hero-badge-dot,
   .scroll-line { animation: none; }
+  .ticker { white-space: normal; }
+  .ticker-track { animation: none; display: block; text-align: center; }
+  .ticker-group { flex-wrap: wrap; justify-content: center; row-gap: 8px; }
+  .ticker-group[aria-hidden="true"] { display: none; }
 }
 
 /* Responsive */
@@ -1429,6 +1775,8 @@ footer {
   .coaches-grid { grid-template-columns: 1fr; }
   .details-wrapper { grid-template-columns: 1fr; gap: 60px; }
   .contact-wrapper { grid-template-columns: 1fr; gap: 50px; }
+  .process-steps { grid-template-columns: 1fr; max-width: 640px; }
+  .register-wrapper { grid-template-columns: 1fr; gap: 50px; }
 }
 
 @media (max-width: 768px) {
@@ -1438,6 +1786,8 @@ footer {
   .nav-hamburger { display: flex; }
   
   .skills-list { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 40px; }
+  .stats-band { padding: 56px 24px; }
   .programs-grid { grid-template-columns: 1fr; }
   .form-row { grid-template-columns: 1fr; }
   
@@ -1453,6 +1803,10 @@ footer {
   section { padding: 60px 16px; }
   .program-card { padding: 30px 22px; }
   .coach-card { padding: 36px 24px; }
+  .stats-band { padding: 48px 16px; }
+  .register-facts { grid-template-columns: 1fr; }
+  .register-fact { padding: 22px 20px; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.18em; }
 }
 </style>
 </head>
@@ -1490,6 +1844,7 @@ footer {
     <li><a href="#skills">Skills</a></li>
     <li><a href="#details">Details</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="#register" class="nav-cta">Register</a></li>
   </ul>
   <button type="button" class="nav-hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -1504,6 +1859,7 @@ footer {
   <a href="#skills" onclick="toggleMenu()">Skills</a>
   <a href="#details" onclick="toggleMenu()">Details</a>
   <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#register" class="mobile-cta" onclick="toggleMenu()">Register</a>
 </div>
 </header>
 
@@ -1516,7 +1872,7 @@ footer {
   <div class="hero-content">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      <span>Salinas, California</span>
+      <span>Registration Open · Salinas, CA</span>
     </div>
     <p class="hero-title">
       <span class="line"><span class="line-inner">BUILT DIFFERENT.</span></span>
@@ -1524,7 +1880,7 @@ footer {
     </p>
     <h1 class="hero-sub">Offensive line training in Salinas, California</h1>
     <div class="hero-cta">
-      <a href="#contact" class="btn-primary">Get Started <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
+      <a href="#register" class="btn-primary">Register Now <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
       <a href="#programs" class="btn-secondary">View Programs</a>
     </div>
   </div>
@@ -1544,6 +1900,71 @@ footer {
   <div class="plate-lg"></div>
   <div class="plate"></div>
 </div>
+
+<!-- Stats Band -->
+<section class="stats-band" aria-label="Heavyweight Linemen at a glance">
+  <ul class="stats-grid">
+    <li class="stat reveal">
+      <span class="stat-value"><span data-count="25">25</span>+</span>
+      <span class="stat-label">Years Combined Coaching</span>
+    </li>
+    <li class="stat reveal">
+      <span class="stat-value">3–6</span>
+      <span class="stat-label">Athletes Per Group</span>
+    </li>
+    <li class="stat reveal">
+      <span class="stat-value">60–90</span>
+      <span class="stat-label">Minute Sessions</span>
+    </li>
+    <li class="stat reveal">
+      <span class="stat-value">10–18</span>
+      <span class="stat-label">Ages Coached</span>
+    </li>
+  </ul>
+</section>
+
+<!-- Off-Season Registration -->
+<section class="register" id="register">
+  <div class="register-wrapper">
+    <div>
+      <div class="register-status reveal">Registration Open</div>
+      <h2 class="section-label reveal">2027 Off-Season Line Training</h2>
+      <p class="section-title reveal">THE OFF-SEASON <br><span style="color:var(--orange)">STARTS NOW</span></p>
+      <p class="register-lead reveal">Off-season training starts in January. Offensive and defensive linemen, youth through high school, small groups or one-on-one. Register now and we'll follow up with the schedule, location, and everything you need for the first session.</p>
+      <div class="register-actions reveal">
+        <a href="#contact" class="btn-primary">Register Your Athlete <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
+        <a href="#programs" class="btn-secondary">See the Programs</a>
+      </div>
+    </div>
+    <ul class="register-facts reveal">
+      <li class="register-fact">
+        <div class="register-fact-label">Starts</div>
+        <div class="register-fact-value">January 2027</div>
+        <div class="register-fact-note">Exact dates and times go out to registered families.</div>
+      </li>
+      <li class="register-fact">
+        <div class="register-fact-label">Cost</div>
+        <div class="register-fact-value">$1 Per Session</div>
+        <div class="register-fact-note">Families also chip in to help cover 5-on-5 camp costs.</div>
+      </li>
+      <li class="register-fact">
+        <div class="register-fact-label">Who</div>
+        <div class="register-fact-value">Ages 10–18</div>
+        <div class="register-fact-note">Youth (10–13) and high school (14–18) linemen.</div>
+      </li>
+      <li class="register-fact">
+        <div class="register-fact-label">Positions</div>
+        <div class="register-fact-value">OL &amp; DL</div>
+        <div class="register-fact-note">Offensive and defensive line, every level of experience.</div>
+      </li>
+      <li class="register-fact register-fact-wide">
+        <div class="register-fact-label">Format &amp; Location</div>
+        <div class="register-fact-value">Small Groups or 1-on-1 · Salinas</div>
+        <div class="register-fact-note">Groups of 3–6 athletes or private sessions, in Salinas. Open to athletes from across Monterey County.</div>
+      </li>
+    </ul>
+  </div>
+</section>
 
 <!-- Philosophy -->
 <section class="philosophy" id="philosophy">
@@ -1606,6 +2027,36 @@ footer {
   </div>
 </section>
 
+<!-- Skills Ticker -->
+<div class="ticker">
+  <div class="ticker-track">
+    <ul class="ticker-group">
+      <li>Three-Point Stance</li>
+      <li>Explosive Get-Off</li>
+      <li>Pass Protection</li>
+      <li>Run Blocking</li>
+      <li>Hand Placement</li>
+      <li>Punch Mechanics</li>
+      <li>Anchor Strength</li>
+      <li>Pad Level</li>
+      <li>Combo Blocks</li>
+      <li>Film Study</li>
+    </ul>
+    <ul class="ticker-group" aria-hidden="true">
+      <li>Three-Point Stance</li>
+      <li>Explosive Get-Off</li>
+      <li>Pass Protection</li>
+      <li>Run Blocking</li>
+      <li>Hand Placement</li>
+      <li>Punch Mechanics</li>
+      <li>Anchor Strength</li>
+      <li>Pad Level</li>
+      <li>Combo Blocks</li>
+      <li>Film Study</li>
+    </ul>
+  </div>
+</div>
+
 <!-- Programs -->
 <section class="programs" id="programs">
   <div class="programs-header">
@@ -1659,7 +2110,7 @@ footer {
     <div class="program-card reveal" data-tilt>
       <div class="program-level">Conditioning</div>
       <h3>OFF-SEASON</h3>
-      <div class="program-ages">All Levels</div>
+      <div class="program-ages">All Levels · Starts January 2027</div>
       <p>Dedicated strength and conditioning programs designed for linemen. Build the power base during the off-season that translates to in-season dominance.</p>
       <ul class="program-features">
         <li>Lineman-specific strength</li>
@@ -1669,6 +2120,37 @@ footer {
         <li>Nutrition guidance</li>
       </ul>
       <a href="#contact" class="program-cta" aria-label="Contact us about Off-Season Conditioning">Contact for Details <svg aria-hidden="true" focusable="false" viewBox="0 0 16 16"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5" fill="none"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- How It Works -->
+<section class="process" id="how-it-works">
+  <div class="process-wrapper">
+    <div class="process-header">
+      <h2 class="section-label reveal">How Training Works</h2>
+      <p class="section-title reveal">THREE STEPS <br><span style="color:var(--orange)">TO THE LINE</span></p>
+      <p class="section-subtitle reveal">Getting started is simple. Tell us about your athlete, we place them in the right program, and the work begins.</p>
+    </div>
+    <ol class="process-steps">
+      <li class="process-step reveal">
+        <div class="process-step-kicker">Step One</div>
+        <h3>Reach Out</h3>
+        <p>Send us your athlete's age, grade, position, and goals through the contact form or by email. We'll follow up to answer questions and talk through options.</p>
+      </li>
+      <li class="process-step reveal">
+        <div class="process-step-kicker">Step Two</div>
+        <h3>Get Placed</h3>
+        <p>We match your athlete to the right program, whether that's youth development, high school, position-specific, or off-season, in a small group or one-on-one.</p>
+      </li>
+      <li class="process-step reveal">
+        <div class="process-step-kicker">Step Three</div>
+        <h3>Train &amp; Compete</h3>
+        <p>Structured 60–90 minute sessions where every rep is coached: stance, footwork, hands, leverage, and strength, all built to carry onto Friday nights.</p>
+      </li>
+    </ol>
+    <div class="process-cta reveal">
+      <a href="#contact" class="btn-primary">Start With Step One <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></a>
     </div>
   </div>
 </section>
@@ -1802,7 +2284,7 @@ footer {
       </div>
       <div class="detail-block reveal">
         <div class="detail-label">Pricing</div>
-        <div class="detail-value">Contact us for program pricing and package options</div>
+        <div class="detail-value">2027 off-season: $1 per session. Families also help cover the cost of 5-on-5 camps.</div>
       </div>
     </div>
     <div>
@@ -1848,7 +2330,7 @@ footer {
           </button></h4>
           <div class="faq-answer" id="faq-4">
             <div class="faq-answer-inner">
-              <p>While our core focus is offensive line development, our coaches bring deep expertise in defensive line play as well. The techniques, strength development, and football IQ we build apply to both sides of the ball. Contact us to discuss defensive line training options.</p>
+              <p>While our core focus is offensive line development, our coaches bring deep expertise in defensive line play as well. The techniques, strength development, and football IQ we build apply to both sides of the ball. Defensive linemen are welcome in the off-season program; just select defensive line when you register.</p>
             </div>
           </div>
         </div>
@@ -1864,6 +2346,17 @@ footer {
           </div>
         </div>
         <div class="faq-item reveal">
+          <h4 class="faq-heading"><button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-7" onclick="toggleFaq(this)">
+            When does the off-season start, and what does it cost?
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button></h4>
+          <div class="faq-answer" id="faq-7">
+            <div class="faq-answer-inner">
+              <p>The 2027 off-season starts in January. Sessions are $1 each, and families help cover the cost of 5-on-5 camps. Register through the form on this page and we'll send the exact schedule and location.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq-item reveal">
           <h4 class="faq-heading"><button type="button" class="faq-question" aria-expanded="false" aria-controls="faq-6" onclick="toggleFaq(this)">
             Where do training sessions take place?
             <span class="faq-icon" aria-hidden="true"></span>
@@ -1875,6 +2368,43 @@ footer {
           </div>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!--
+  RESULTS / TESTIMONIALS: hidden until there are real quotes.
+  To publish: replace the sample text in each <figure>, add or remove figures, then delete the hidden attribute.
+  Use first name + last initial and the athlete's grade/school only with the family's permission.
+-->
+<section class="testimonials" id="results" hidden>
+  <div class="coaching-wrapper">
+    <h2 class="section-label reveal">What Families Say</h2>
+    <p class="section-title reveal">PROOF IN <br><span style="color:var(--orange)">THE TRENCHES</span></p>
+    <div class="testimonials-grid">
+      <!-- Copy this block once per quote:
+      <figure class="testimonial reveal">
+        <blockquote><p>"Quote from the parent or athlete."</p></blockquote>
+        <figcaption>Maria G. · Parent of a junior at Salinas High</figcaption>
+      </figure>
+      -->
+    </div>
+  </div>
+</section>
+
+<!--
+  PHOTO GALLERY: hidden until there are real session photos.
+  To publish: put images in /images/, update src and alt (describe the drill, e.g. "High school lineman working pass-set footwork in Salinas"),
+  then delete the hidden attribute. Get a media release for any minor shown.
+-->
+<section class="gallery" id="gallery" hidden>
+  <div class="coaching-wrapper">
+    <h2 class="section-label reveal">Inside a Session</h2>
+    <p class="section-title reveal">IN THE <br><span style="color:var(--orange)">WORK</span></p>
+    <div class="gallery-grid">
+      <!-- Copy this line once per photo:
+      <img src="/images/session-1.jpg" alt="High school lineman working pass-set footwork in Salinas" width="800" height="600" loading="lazy">
+      -->
     </div>
   </div>
 </section>
@@ -1898,7 +2428,7 @@ footer {
   <div class="contact-wrapper">
     <div class="contact-info">
       <div>
-        <h2 class="section-label reveal">Contact Us</h2>
+        <h2 class="section-label reveal">Register or Contact Us</h2>
         <p class="section-title reveal">LET'S <br><span style="color:var(--orange)">WORK</span></p>
       </div>
       <div class="contact-block reveal">
@@ -1923,44 +2453,83 @@ footer {
       Until then the form shows visitors an email link instead of failing silently.
     -->
     <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="form-group">
+        <label for="interest">I'm interested in</label>
+        <select id="interest" name="interest" required>
+          <option value="Off-season 2027 registration" selected>Registering for the 2027 off-season</option>
+          <option value="General question">A general question</option>
+        </select>
+      </div>
       <div class="form-row">
         <div class="form-group">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" autocomplete="name" placeholder="Athlete or parent name" required>
+          <label for="name">Parent / Guardian Name</label>
+          <input type="text" id="name" name="name" autocomplete="name" placeholder="Your name" required>
         </div>
+        <div class="form-group">
+          <label for="athlete">Athlete Name</label>
+          <input type="text" id="athlete" name="athlete" autocomplete="off" placeholder="Athlete's name">
+        </div>
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label for="email">Email</label>
           <input type="email" id="email" name="email" autocomplete="email" placeholder="your@email.com" required>
         </div>
-      </div>
-      <div class="form-row">
         <div class="form-group">
           <label for="phone">Phone</label>
           <input type="tel" id="phone" name="phone" autocomplete="tel" placeholder="(000) 000-0000">
         </div>
+      </div>
+      <div class="form-row">
         <div class="form-group">
           <label for="level">Age / Grade Level</label>
           <select id="level" name="level">
             <option value="">Select level</option>
-            <option value="youth">Youth (Ages 10-13)</option>
-            <option value="freshman">Freshman (9th Grade)</option>
-            <option value="sophomore">Sophomore (10th Grade)</option>
-            <option value="junior">Junior (11th Grade)</option>
-            <option value="senior">Senior (12th Grade)</option>
+            <option value="Youth (ages 10-13)">Youth (Ages 10-13)</option>
+            <option value="Freshman (9th grade)">Freshman (9th Grade)</option>
+            <option value="Sophomore (10th grade)">Sophomore (10th Grade)</option>
+            <option value="Junior (11th grade)">Junior (11th Grade)</option>
+            <option value="Senior (12th grade)">Senior (12th Grade)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="position">Position</label>
+          <select id="position" name="position">
+            <option value="">Select position</option>
+            <option value="Offensive line">Offensive line</option>
+            <option value="Defensive line">Defensive line</option>
+            <option value="Both">Both</option>
+            <option value="Not sure yet">Not sure yet</option>
           </select>
         </div>
       </div>
-      <div class="form-group">
-        <label for="message">Message</label>
-        <textarea id="message" name="message" placeholder="Tell us about your athlete and training goals..."></textarea>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="program">Training Format</label>
+          <select id="program" name="program">
+            <option value="">Select format</option>
+            <option value="Small group">Small group (3–6 athletes)</option>
+            <option value="1-on-1">1-on-1 sessions</option>
+            <option value="Not sure yet">Not sure yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="school">School</label>
+          <input type="text" id="school" name="school" autocomplete="off" placeholder="Current school">
+        </div>
       </div>
-      <input type="hidden" name="_subject" value="Training inquiry from heavyweightlineman.com">
+      <div class="form-group">
+        <label for="message">Anything We Should Know?</label>
+        <textarea id="message" name="message" placeholder="Experience, goals, availability, or your question..."></textarea>
+      </div>
+      <input type="hidden" id="formSubject" name="_subject" value="Off-season registration from heavyweightlineman.com">
       <div class="form-honeypot" aria-hidden="true">
         <label for="gotcha">Leave this field empty</label>
         <input type="text" id="gotcha" name="_gotcha" tabindex="-1" autocomplete="off">
       </div>
+      <p class="form-note">Registering saves your athlete's spot. We'll follow up with the January schedule, location, and first-session paperwork.</p>
       <div class="form-submit">
-        <button type="submit" class="btn-primary">Send Message <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></button>
+        <button type="submit" class="btn-primary" id="formSubmit">Register <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg></button>
       </div>
       <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
     </form>
@@ -2131,6 +2700,20 @@ if (animate) {
   }
   ScrollTrigger.addEventListener('refresh', revealUnreachable);
 
+  // Count up the stats band numbers when they scroll into view (final values are already in the HTML)
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = +el.dataset.count;
+    const counter = { v: 0 };
+    el.textContent = '0';
+    gsap.to(counter, {
+      v: target,
+      duration: 1.6,
+      ease: 'power2.out',
+      scrollTrigger: { trigger: el, start: 'top bottom-=100', once: true },
+      onUpdate: () => { el.textContent = Math.round(counter.v); }
+    });
+  });
+
   // ===== HERO PARALLAX =====
   const hero = document.querySelector('.hero');
   hero.addEventListener('mousemove', (e) => {
@@ -2232,21 +2815,39 @@ const form = document.getElementById('contactForm');
 const formStatus = document.getElementById('formStatus');
 const CONTACT_EMAIL = 'contact@heavyweightlineman.com';
 
+const formSubject = document.getElementById('formSubject');
+const formSubmit = document.getElementById('formSubmit');
+const isRegistration = () => form.querySelector('#interest').value.startsWith('Off-season');
+
+// Registration vs. general question: athlete name is only required for registrations,
+// and the button/subject line follow the choice so the inbox is easy to sort.
+function syncFormMode() {
+  const reg = isRegistration();
+  form.querySelector('#athlete').required = reg;
+  formSubmit.firstChild.textContent = reg ? 'Register ' : 'Send Message ';
+}
+form.querySelector('#interest').addEventListener('change', syncFormMode);
+syncFormMode();
+
+function fieldSummary() {
+  const v = id => form.querySelector('#' + id).value.trim();
+  return [
+    ['Interest', v('interest')], ['Parent/guardian', v('name')], ['Athlete', v('athlete')],
+    ['Email', v('email')], ['Phone', v('phone')], ['Level', v('level')], ['Position', v('position')],
+    ['Format', v('program')], ['School', v('school')]
+  ].filter(([, val]) => val).map(([k, val]) => `${k}: ${val}`).join('\n') + (v('message') ? `\n\n${v('message')}` : '');
+}
+
 function showEmailFallback() {
-  const name = form.querySelector('#name').value;
-  const email = form.querySelector('#email').value;
-  const phone = form.querySelector('#phone').value;
-  const level = form.querySelector('#level').value;
-  const message = form.querySelector('#message').value;
-  const body = `${message}\n\nFrom: ${name} (${email})` + (phone ? `\nPhone: ${phone}` : '') + (level ? `\nLevel: ${level}` : '');
-  const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent('Training inquiry from ' + name)}&body=${encodeURIComponent(body)}`;
+  const subject = formSubject.value;
+  const href = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fieldSummary())}`;
 
   formStatus.textContent = 'We couldn’t send your message from this form. ';
   const link = document.createElement('a');
   link.href = href;
   link.textContent = `Email it to ${CONTACT_EMAIL} instead`;
   formStatus.appendChild(link);
-  formStatus.append('. Your message is already filled in.');
+  formStatus.append('. Your details are already filled in.');
 }
 
 form.addEventListener('submit', async function(e) {
@@ -2254,6 +2855,11 @@ form.addEventListener('submit', async function(e) {
   const btn = form.querySelector('button[type="submit"]');
   const originalText = btn.innerHTML;
   formStatus.textContent = '';
+  const athlete = form.querySelector('#athlete').value.trim();
+  const who = athlete || form.querySelector('#name').value.trim();
+  formSubject.value = isRegistration()
+    ? `Off-season registration: ${who}`
+    : `Question from ${who} (heavyweightlineman.com)`;
 
   // Form ID not configured yet: don't post to a dead endpoint
   if (form.action.includes('YOUR_FORM_ID')) {
@@ -2277,8 +2883,11 @@ form.addEventListener('submit', async function(e) {
     btn.innerHTML = 'MESSAGE SENT ✓';
     btn.style.opacity = '1';
     btn.style.background = '#2E7D32';
-    formStatus.textContent = 'Thanks! We’ll get back to you soon.';
+    formStatus.textContent = isRegistration()
+      ? 'You\u2019re registered! We\u2019ll be in touch with the January schedule and location.'
+      : 'Thanks! We\u2019ll get back to you soon.';
     form.reset();
+    syncFormMode();
     setTimeout(() => {
       btn.innerHTML = originalText;
       btn.style.background = '';
