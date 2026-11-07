@@ -2446,13 +2446,8 @@ footer {
         <div class="contact-block-value">Training locations throughout Salinas. Serving linemen from Prunedale, Castroville, Marina, Seaside, Monterey, South County (Gonzales, Soledad, Greenfield, King City), and across Monterey County.</div>
       </div>
     </div>
-    <!--
-      FORM SETUP: Sign up free at https://formspree.io
-      1. Create account, add a form that delivers to contact@heavyweightlineman.com, copy its form ID
-      2. Replace YOUR_FORM_ID below with that ID
-      Until then the form shows visitors an email link instead of failing silently.
-    -->
-    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+    <!-- Submissions go to Formspree form mqppoqgr; if a post fails, visitors get a pre-filled email link instead. -->
+    <form class="contact-form reveal" id="contactForm" action="https://formspree.io/f/mqppoqgr" method="POST">
       <div class="form-group">
         <label for="interest">I'm interested in</label>
         <select id="interest" name="interest" required>
@@ -2861,12 +2856,6 @@ form.addEventListener('submit', async function(e) {
     ? `Off-season registration: ${who}`
     : `Question from ${who} (heavyweightlineman.com)`;
 
-  // Form ID not configured yet: don't post to a dead endpoint
-  if (form.action.includes('YOUR_FORM_ID')) {
-    showEmailFallback();
-    return;
-  }
-
   btn.innerHTML = 'SENDING... <svg aria-hidden="true" focusable="false" width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10m0 0L9 4m4 4L9 12" stroke="currentColor" stroke-width="1.5"/></svg>';
   btn.style.opacity = '0.7';
   btn.disabled = true;
@@ -2880,18 +2869,19 @@ form.addEventListener('submit', async function(e) {
 
     if (!response.ok) throw new Error('Form endpoint returned ' + response.status);
 
-    btn.innerHTML = 'MESSAGE SENT ✓';
+    btn.innerHTML = isRegistration() ? 'REGISTERED ✓' : 'MESSAGE SENT ✓';
     btn.style.opacity = '1';
     btn.style.background = '#2E7D32';
     formStatus.textContent = isRegistration()
       ? 'You\u2019re registered! We\u2019ll be in touch with the January schedule and location.'
       : 'Thanks! We\u2019ll get back to you soon.';
     form.reset();
-    syncFormMode();
+    form.querySelector('#athlete').required = isRegistration();
     setTimeout(() => {
       btn.innerHTML = originalText;
       btn.style.background = '';
       btn.disabled = false;
+      syncFormMode();
     }, 3000);
   } catch (err) {
     showEmailFallback();
